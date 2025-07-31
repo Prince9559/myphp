@@ -13,20 +13,17 @@ if ($conn->connect_error)
     die("Connection failed: " . $conn->connect_error);
 }
 
-// $name = "Azad";
-// $subject = "Maths";
-// $author = "Azad Book";
-// $price = "10000";
+// $data = json_decode(file_get_contents("php://input"), true);
 
 $name = $_GET["name"];
-$subject = $_GET["subject"];
-$author = $_GET["author"];
-$price = $_GET["price"];
+$subject = $_GET["mobile"];
+$author = $_GET["email"];
+$price = $_GET["password"];
 
 echo "Connected successfully";
 
-$stmt = $conn->prepare("INSERT INTO books (name, subject, author, price) VALUES (?, ?, ?, ?)");
-$stmt->bind_param("sssd", $name, $subject, $author, $price);
+$stmt = $conn->prepare("INSERT INTO detail(name, mobile, email, password) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("sssd", $name, $mobile, $email, $password);
 
 $stmt->execute()
 
